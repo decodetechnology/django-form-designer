@@ -9,6 +9,7 @@ from django.core.mail import send_mail
 from django.conf import settings as django_settings
 from django.utils.datastructures import SortedDict
 from django.core.exceptions import ImproperlyConfigured
+from django.conf import settings
 
 # support for custom User models in Django 1.5+
 try:
@@ -16,7 +17,7 @@ try:
 except ImportError:  # django < 1.5
     from django.contrib.auth.models import User
 else:
-    User = get_user_model()
+    User = settings.AUTH_USER_MODEL
 
 from form_designer.fields import TemplateTextField, TemplateCharField, ModelNameField, RegexpExpressionField
 from form_designer.utils import get_class
